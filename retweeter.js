@@ -16,8 +16,10 @@ async function retweetTweet(button) {
 function retweet() {
 	const button  = document.querySelector('div[aria-label$="Retweets. Retweet"]');
 	if(button) {
-		retweetTweet(button);
-		counterDiv.innerText = counterDiv.innerText = "retweets done: " + (++counter);
+		retweetTweet(button).then(() => {
+			counterDiv.innerText = counterDiv.innerText = "retweets done: " + (++counter);
+		}).catch(e => {});
+		
 		setTimeout(retweet, 300);
 		
 	}else {
